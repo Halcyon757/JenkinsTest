@@ -1,6 +1,11 @@
-pipeline {
+pipeline { 
     agent any
     stages {
+        stage('Cleanup') {
+            steps {
+                sh 'rm -rf target'
+            }
+        }
         stage('Checkout') {
             steps {
                 git 'https://github.com/Halcyon757/JenkinsTest.git'
@@ -19,7 +24,6 @@ pipeline {
         stage('Deploy') {
             steps {
                 sh 'sudo cp target/demo-project-1.0-SNAPSHOT.war /var/lib/jetty9/webapps/ROOT.war'
-                
                 sh 'sudo systemctl restart jetty9'
             }
         }
