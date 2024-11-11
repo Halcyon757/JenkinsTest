@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Cleanup') {
             steps {
-                sh 'rm -rf target'
+                sh 'sudo rm -rf target'
             }
         }
         stage('Checkout') {
