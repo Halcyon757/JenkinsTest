@@ -16,5 +16,12 @@ pipeline {
                 sh 'mvn test'
             }
         }
+        stage('Deploy') {
+            steps {
+                sh 'sudo cp target/demo-project-1.0-SNAPSHOT.war /var/lib/jetty9/webapps/ROOT.war'
+                
+                sh 'sudo systemctl restart jetty9'
+            }
+        }
     }
 }
